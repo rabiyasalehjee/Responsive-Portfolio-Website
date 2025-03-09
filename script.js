@@ -152,4 +152,36 @@ document.addEventListener("DOMContentLoaded", () => {
   );
 
   images.forEach((img) => observer.observe(img));
+  const serviceGrids = document.querySelectorAll('.service-details-grid');
+    
+    // Set initial state: only first grid open
+    serviceGrids.forEach((grid, index) => {
+        if (index !== 0) {
+            grid.classList.add('collapsed');
+        } else {
+            grid.classList.add('expanded');
+        }
+    });
+
+    // Add click handlers to all "See Details" buttons
+    const buttons = document.querySelectorAll('.service-details-right .contact-button');
+    buttons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            const currentGrid = button.closest('.service-details-grid');
+            const isCollapsed = currentGrid.classList.contains('collapsed');
+
+            // Collapse all grids
+            serviceGrids.forEach(grid => {
+                grid.classList.remove('expanded');
+                grid.classList.add('collapsed');
+            });
+
+            // Expand clicked grid if it was collapsed
+            if (isCollapsed) {
+                currentGrid.classList.remove('collapsed');
+                currentGrid.classList.add('expanded');
+            }
+        });
+    });
 });
