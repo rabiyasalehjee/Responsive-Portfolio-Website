@@ -6,16 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Magenta Holloway</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-
 </head>
 <body>
-    <!-- Navbar (unchanged) -->
     <nav class="navbar">
         <div class="navbar-container container">
             <div class="logo">
-                <img src="logo.png" alt="Logo">
+                <a href="index.html">
+                    <img src="logo.png" alt="Logo" loading="lazy">
+                </a>
             </div>
             <input type="checkbox" name="" id="">
             <div class="hamburger-lines">
@@ -30,8 +30,6 @@
             </ul>
         </div>
     </nav>
-
-    
     <main class="content-wrapper"> 
         <section id="hero" class="hero-section">
             <div class="container">
@@ -47,8 +45,6 @@
                         </div>
                     </div>
                 </div>
-                
-                <!-- New Contact Info Row -->
                 <div class="contact-info-grid">
                     <div class="contact-left">
                         <div class="contact-item email">
@@ -82,7 +78,7 @@
                         <p>Magenta Holloway is a creative professional specializing in innovative design and branding. With a keen eye for detail and a passion for storytelling, she helps clients bring their visions to life through impactful visual solutions</p>
                         <a href="#" class="contact-button">
                             Discover
-                            <svg class="button-arrow" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <svg class="button-arrow animate-arrow" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19V5m0 14-4-4m4 4 4-4"/>
                             </svg>
                         </a>
@@ -90,54 +86,38 @@
                 </div>
             </div>
         </section>
- <!-- Slider Section -->
- <section id="slider" class="slider-section">
-    <div class="container-slider">
-        <div class="slider-container">
-            <div class="slider-wrapper">
-                <div class="slide">
-                    <img src="/assets/slider1.jpg" alt="Slide 1" class="slide-image">
-                </div>
-                <div class="slide active">
-                    <img src="assets/slider2.jpg" alt="Slide 2" class="slide-image">
-                </div>
-                <div class="slide">
-                    <img src="assets/slider3.jpg" alt="Slide 3" class="slide-image">
-                </div>
-                <div class="slide">
-                    <img src="/assets/slider1.jpg" alt="Slide 1" class="slide-image">
-                </div>
-                <div class="slide">
-                    <img src="/assets/slider1.jpg" alt="Slide 1" class="slide-image">
-                </div>
-                <div class="slide">
-                    <img src="/assets/slider1.jpg" alt="Slide 1" class="slide-image">
+        <section id="slider" class="slider-section">
+            <div class="container-slider">
+                <div class="slider-container">
+                    <div class="slider-wrapper">
+                        <div class="slide">
+                            <img src="/assets/slider1.jpg" alt="Slide 1" class="slide-image" loading="lazy">
+                        </div>
+                        <div class="slide active">
+                            <img src="assets/slider2.jpg" alt="Slide 2" class="slide-image" loading="lazy">
+                        </div>
+                        <div class="slide">
+                            <img src="assets/slider3.jpg" alt="Slide 3" class="slide-image" loading="lazy">
+                        </div>
+                        <div class="slide">
+                            <img src="/assets/slider1.jpg" alt="Slide 1" class="slide-image" loading="lazy">
+                        </div>
+                        <div class="slide">
+                            <img src="/assets/slider1.jpg" alt="Slide 1" class="slide-image" loading="lazy">
+                        </div>
+                        <div class="slide">
+                            <img src="/assets/slider1.jpg" alt="Slide 1" class="slide-image" loading="lazy">
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
-        <!-- Services Section -->
+        </section>
         <section id="services" class="services-section">
-            <p>Hello
-                
-            </p>
+            <p>Hello</p>
         </section>
-
-        <!-- Work Section -->
-        <section id="work" class="work-section">
-            
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="contact-section">
-           
-        </section>
+        <section id="work" class="work-section"></section>
+        <section id="contact" class="contact-section"></section>
     </main>
-
-    <!-- Footer -->
-    <footer class="footer">
-        
-    </footer>
+    <footer class="footer"></footer>
 </body>
 </html>
