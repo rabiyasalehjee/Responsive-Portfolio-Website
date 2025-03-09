@@ -1,4 +1,16 @@
 document.addEventListener("DOMContentLoaded", () => {
+  
+  const lenis = new Lenis({
+    duration: 1.2, 
+    easing: (t) => Math.min(1, 1.001 - Math.pow(1 - t, 2)), 
+    smooth: true, 
+  });
+
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
   const sliderWrapper = document.querySelector(".slider-wrapper");
   const slides = document.querySelectorAll(".slide");
   let isDragging = false;

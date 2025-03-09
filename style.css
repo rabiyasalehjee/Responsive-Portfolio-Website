@@ -38,6 +38,22 @@
   padding: 0;
   margin: 0;
 }
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important; 
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain; 
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden; 
+}
 
 html,
 body {
@@ -45,13 +61,13 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Roboto", sans-serif;
-}
-html {
-  scroll-behavior: smooth;
+  overflow-x: hidden; 
+  overscroll-behavior-x: none; 
+  overscroll-behavior-y: none; 
 }
 
 body {
-  overflow-y: scroll;
+  overflow-y: auto; 
   -webkit-overflow-scrolling: touch;
 }
 
