@@ -71,6 +71,27 @@ body {
   -webkit-overflow-scrolling: touch;
 }
 
+::-webkit-scrollbar {
+  width: 10px; 
+}
+
+
+::-webkit-scrollbar-track {
+  background: #414141;
+  
+}
+
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+  min-height: 30px; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
 .navbar input[type="checkbox"],
 .navbar .hamburger-lines {
   display: none;
