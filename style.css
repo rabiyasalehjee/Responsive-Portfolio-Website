@@ -999,6 +999,10 @@ body {
 .work-left {
   text-align: center;
 }
+.work-left-text {
+  text-align: center;
+  max-width:40%;
+}
 
 .work-left h2 {
   font-size: var(--font-large);
@@ -1011,6 +1015,11 @@ body {
   font-weight: 500;
   line-height: 1;
   margin-top: 12px;
+}
+.work-subtitle-text {
+ font-size: var(--font-medium);
+  color: var(--gray);
+  line-height: 1.6;
 }
 
 .work-diagram {
@@ -1040,26 +1049,19 @@ body {
   padding: 10px;
   box-sizing: border-box;
   transition: all 0.3s ease;
-}
-
-.discovery {
-  left: calc(4% - 100px);
-}
-
-.research {
-  left: calc(26% - 100px);
+  z-index: 1; 
 }
 
 .design {
   width: 240px !important;
   height: 240px !important;
-  left: calc(48% - 100px);
   background-color: var(--white);
   box-shadow: 0 0 0.25em 0.25em rgba(195, 195, 195, 0.25);
-  z-index: 3;
+  z-index: 3; 
 }
 
-.inner-circle {
+.design .inner-circle {
+  display: block;
   width: 220px;
   height: 220px;
   border-radius: 50%;
@@ -1068,6 +1070,59 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.work-diagram .circle:hover {
+  width: 240px !important;
+  height: 240px !important;
+  background-color: var(--white);
+  box-shadow: 0 0 0.25em 0.25em rgba(195, 195, 195, 0.25);
+  z-index: 4; 
+}
+
+.work-diagram .circle:hover::before {
+  content: "";
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  border: 2px solid black;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.work-diagram:has(.circle:hover) .design:not(:hover) {
+  width: 200px !important;
+  height: 200px !important;
+  background: transparent;
+  border: 2px solid #ccc;
+  box-shadow: none;
+  z-index: 1; 
+}
+
+.work-diagram:has(.circle:hover) .design:not(:hover) .inner-circle {
+  display: none;
+}
+
+.work-diagram .design:hover {
+  width: 240px !important;
+  height: 240px !important;
+  background-color: var(--white);
+  box-shadow: 0 0 0.25em 0.25em rgba(195, 195, 195, 0.25);
+  z-index: 5; 
+}
+
+.work-diagram .design:hover .inner-circle {
+  display: block;
+}
+
+.discovery {
+  left: calc(4% - 100px);
+}
+
+.research {
+  left: calc(26% - 100px);
 }
 
 .iteration {
@@ -1116,6 +1171,9 @@ body {
 }
 
 @media (max-width: 768px) {
+  .work-left-text {
+    max-width: 100%;
+  }
   .work-diagram {
     display: none;
   }
