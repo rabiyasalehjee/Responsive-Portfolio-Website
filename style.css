@@ -1350,12 +1350,34 @@ body {
   
 }
 
+.projects-cards-container {
+  position: relative;
+  overflow: hidden;
+}
+
 .projects-cards-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 30px;
   margin-top: 40px;
   width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transform: translateX(100%);
+  transition: all 0.5s ease-in-out;
+}
+
+.projects-cards-grid.active {
+  position: relative;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.arrow-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .project-card {

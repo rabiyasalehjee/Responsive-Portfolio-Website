@@ -11,7 +11,30 @@ document.addEventListener("DOMContentLoaded", () => {
     requestAnimationFrame(raf);
   }
   requestAnimationFrame(raf);
+  const leftBtn = document.querySelector('.arrow-left');
+  const rightBtn = document.querySelector('.arrow-right');
+  const cardSets = document.querySelectorAll('.projects-cards-grid');
+  let currentSet = 1;
 
+  rightBtn.addEventListener('click', () => {
+    if (currentSet === 1) {
+      cardSets[0].classList.remove('active');
+      cardSets[1].classList.add('active');
+      currentSet = 2;
+      leftBtn.removeAttribute('disabled');
+      rightBtn.setAttribute('disabled', 'true');
+    }
+  });
+
+  leftBtn.addEventListener('click', () => {
+    if (currentSet === 2) {
+      cardSets[1].classList.remove('active');
+      cardSets[0].classList.add('active');
+      currentSet = 1;
+      rightBtn.removeAttribute('disabled');
+      leftBtn.setAttribute('disabled', 'true');
+    }
+  });
   const sliderWrapper = document.querySelector(".slider-wrapper");
   const slides = document.querySelectorAll(".slide");
   let isDragging = false;
