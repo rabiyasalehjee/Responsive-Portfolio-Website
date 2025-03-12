@@ -1363,6 +1363,7 @@ body {
   flex-direction: column;
   background: white;
   padding:6px;
+  padding-bottom:0px;
   border-radius: 10px;
   border: 2px solid var(--gray-shadow);
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
@@ -1395,12 +1396,12 @@ body {
 }
 
 .project-year {
-  font-size: var(--font-medium);
+  font-size: var(--font-small);
   color: var(--gray);
 }
 
 .project-description {
-  font-size: var(--font-medium);
+  font-size: var(--font-small);
   color: var(--gray);
   line-height: 1.6;
   margin: 0;
