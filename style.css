@@ -1281,13 +1281,54 @@ body {
 
 .recent-projects-right {
   text-align: right;
-  
+  display: flex;
+  flex-direction: column; 
+  justify-content: flex-end; 
 }
 
-.recent-projects-right p {
-  font-size: var(--font-medium);
-  color: var(--gray);
-  line-height: 1.6;
+.arrow-buttons {
+  display: flex;
+  gap: 10px; 
+  justify-content: flex-end; 
+  margin-top: 10px; 
+}
+
+.arrow-btn {
+  width: 35px; 
+  height: 30px;
+  background-color: var(--gray-shadow); 
+  border: none;
+  border-radius: 10px; 
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease; 
+}
+
+.arrow-btn img {
+  width: 15px; 
+  height: 15px;
+  object-fit: contain;
+}
+
+.arrow-btn:hover {
+  background-color: #aaa; 
+}
+
+
+@media (max-width: 768px) {
+  .recent-projects-right {
+    text-align: justify;
+    text-align-last: center;
+    align-items: center; 
+  }
+  
+  .arrow-buttons {
+    justify-content: center; 
+    margin-top: 15px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -1306,10 +1347,7 @@ body {
   .recent-projects-left {
     text-align: center;
   }
-  .recent-projects-right {
-    text-align: justify;
-    text-align-last: center;
-  }
+  
 }
 
 .projects-cards-grid {
