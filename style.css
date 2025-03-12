@@ -10,6 +10,7 @@
   --white: #ffffff;
   --gray-light: #f8f8f8;
   --gray-shadow: #f0f0f0;
+  --gray-shadow-dark:#E0E0E0
   --gray: #666666;
 }
 :root {
@@ -134,7 +135,7 @@ body {
 
 .menu-items li {
   list-style: none;
-  font-size: var(--font-medium);
+  font-size: var(--font-small);
 }
 
 .menu-items a {
@@ -160,14 +161,36 @@ body {
 
 .logo img {
   margin-top: 10px;
-  height: 50px;
+  height: 35px;
   width: auto;
+}
+.navbar-phone {
+  order: 2; 
+  font-size: var(--font-small);
+  font-weight: 500;
+}
+.navbar-phone a {
+  color: var(--black);
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+.navbar-phone a:hover {
+  color: var(--gray);
 }
 
 @media (max-width: 768px) {
-  .logo img {
-    margin-top: 0px;
+  .navbar-phone {
+    display: none;
   }
+
+  .navbar-container input[type="checkbox"]:checked ~ .logo {
+    display: block;
+  }
+
+  .logo img {
+    margin-top: 5px;
+  }
+
   .navbar {
     opacity: 1;
   }
@@ -180,16 +203,17 @@ body {
   .navbar-container {
     display: block;
     text-align: center;
+    position: relative;
   }
 
   .navbar-container input[type="checkbox"] {
     position: absolute;
     display: block;
     height: 32px;
-    width: 30px;
+    width: 35px;
     top: 20px;
     left: 20px;
-    z-index: 5;
+    z-index: 15;
     opacity: 0;
     cursor: pointer;
   }
@@ -201,7 +225,7 @@ body {
     position: absolute;
     top: 20px;
     left: 20px;
-    z-index: 2;
+    z-index: 12;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -233,31 +257,41 @@ body {
     padding-top: 100px;
     background: var(--white);
     height: 100vh;
-    max-width: 300px;
-    transform: translate(-150%);
+    max-width: 240px;
+    transform: translate(-100%);
     display: flex;
     flex-direction: column;
-    margin-left: -40px;
+    margin-left: 0;
     padding-left: 40px;
+    padding-right: 40px; 
     transition: transform 0.5s ease-in-out;
     border-right: 1px solid rgb(196 195 195 / 50%);
-    overflow: scroll;
+    overflow-y: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 300px;
+    z-index: 10;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
   }
 
   .navbar .menu-items li {
     margin-bottom: 1.8rem;
     font-size: var(--font-medium);
     font-weight: 500;
+    text-align: right; 
+    width: 100%; 
+  }
+
+  .navbar .menu-items li a {
+    display: block; 
   }
 
   .logo {
     position: absolute;
     top: 10px;
     right: 15px;
-  }
-
-  .navbar-container input[type="checkbox"]:checked ~ .menu-items {
-    transform: translateX(0);
+    z-index: 11;
   }
 
   .navbar-container input[type="checkbox"]:checked ~ .hamburger-lines .line1 {
@@ -272,11 +306,15 @@ body {
     transform: rotate(-45deg);
   }
 
+  .navbar-container input[type="checkbox"]:checked ~ .menu-items {
+    transform: translateX(0);
+  }
+
   .menu-items {
     position: static;
     transform: none;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-end; 
     width: 100%;
   }
 }
@@ -731,13 +769,13 @@ body {
   background: var(--gray-light);
   border-radius: 15px;
   padding: 15px;
-  border: 1px solid var(--gray-shadow);
+  box-shadow: 0 1px 20px rgba(0, 0, 0, 0.12);
+  border: 1px solid var(--gray-shadow-dark);
   margin-top: 40px;
   transition: all 0.3s ease-in-out;
 }
 .service-details-grid.collapsed {
   background: transparent;
-
   padding-top: 15px;
   padding-bottom: 0px;
 }
