@@ -138,13 +138,33 @@ document.addEventListener("DOMContentLoaded", () => {
     smoothScrollTo(sliderSection.offsetTop, 800);
   });
 
-  // New Service link handler
+  // Service link handler
   const serviceLink = document.querySelector('a[href="#services"]');
   serviceLink.addEventListener("click", (e) => {
     e.preventDefault();
     const serviceSection = document.querySelector("#service");
     const navbarHeight = document.querySelector(".navbar").offsetHeight;
-    const offsetPosition = serviceSection.offsetTop - navbarHeight - 20; // 20px buffer from top
+    const offsetPosition = serviceSection.offsetTop - navbarHeight;
+    smoothScrollTo(offsetPosition, 800);
+  });
+
+  // Work link handler
+  const workLink = document.querySelector('a[href="#work"]');
+  workLink.addEventListener("click", (e) => {
+    e.preventDefault();
+    const workSection = document.querySelector("#work");
+    const navbarHeight = document.querySelector(".navbar").offsetHeight;
+    const offsetPosition = workSection.offsetTop - navbarHeight;
+    smoothScrollTo(offsetPosition, 800);
+  });
+
+  // New Contact link handler
+  const contactLink = document.querySelector('a[href="#contact"]');
+  contactLink.addEventListener("click", (e) => {
+    e.preventDefault();
+    const footerSection = document.querySelector(".footer");
+    const navbarHeight = document.querySelector(".navbar").offsetHeight;
+    const offsetPosition = footerSection.offsetTop - navbarHeight;
     smoothScrollTo(offsetPosition, 800);
   });
 
