@@ -607,9 +607,12 @@ body {
   margin: auto;
   padding: 0 40px;
 }
-
+.spacer-root{
+  padding:60px;
+}
 .slider-section {
   padding: 60px 0;
+  padding-bottom:0px !important;
 }
 
 .slider-container {
@@ -737,6 +740,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-top:0px !important;
 }
 
 .service-grid {

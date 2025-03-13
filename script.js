@@ -1,12 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
   
   const lenis = new Lenis({
-    duration: 0.8, 
-    easing: (t) => Math.min(1, 1.001 - Math.pow(1 - t, 2)), 
-    smooth: true, 
-    smoothTouch: true, // Enable smooth scrolling on touch devices
-  wheelMultiplier: 1, // Adjust scroll speed (default is 1)
-  touchMultiplier: 2, // Adjust touch sensitivity
+    duration: 0.8,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(1 - t, 2)),
+    smooth: true,
+    smoothTouch: true,
+    wheelMultiplier: 1,
+    touchMultiplier: 2,
   });
 
   function raf(time) {
@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
     requestAnimationFrame(raf);
   }
   requestAnimationFrame(raf);
+
   const leftBtn = document.querySelector('.arrow-left');
   const rightBtn = document.querySelector('.arrow-right');
   const cardSets = document.querySelectorAll('.projects-cards-grid');
@@ -38,6 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
       leftBtn.setAttribute('disabled', 'true');
     }
   });
+
   const sliderWrapper = document.querySelector(".slider-wrapper");
   const slides = document.querySelectorAll(".slide");
   let isDragging = false;
@@ -115,24 +117,35 @@ document.addEventListener("DOMContentLoaded", () => {
   updateActiveSlide();
 
   let resizeTimeout;
-window.addEventListener("resize", () => {
-  clearTimeout(resizeTimeout);
-  resizeTimeout = setTimeout(() => {
-    const newSlideWidth = slides[0].offsetWidth;
-    const newContainerWidth = Math.min(sliderWrapper.parentElement.offsetWidth, 1000);
-    const newOffset = (newContainerWidth - newSlideWidth) / 2;
-    prevTranslate = -(newSlideWidth * currentIndex) + newOffset;
-    currentTranslate = prevTranslate;
-    sliderWrapper.style.transform = `translateX(${prevTranslate}px)`;
-    updateActiveSlide();
-  }, 100); // Throttle to 100ms
-});
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      const newSlideWidth = slides[0].offsetWidth;
+      const newContainerWidth = Math.min(sliderWrapper.parentElement.offsetWidth, 1000);
+      const newOffset = (newContainerWidth - newSlideWidth) / 2;
+      prevTranslate = -(newSlideWidth * currentIndex) + newOffset;
+      currentTranslate = prevTranslate;
+      sliderWrapper.style.transform = `translateX(${prevTranslate}px)`;
+      updateActiveSlide();
+    }, 100);
+  });
 
+  // Existing Discover button handler
   const contactButton = document.querySelector(".contact-button");
   contactButton.addEventListener("click", (e) => {
     e.preventDefault();
     const sliderSection = document.querySelector("#slider");
     smoothScrollTo(sliderSection.offsetTop, 800);
+  });
+
+  // New Service link handler
+  const serviceLink = document.querySelector('a[href="#services"]');
+  serviceLink.addEventListener("click", (e) => {
+    e.preventDefault();
+    const serviceSection = document.querySelector("#service");
+    const navbarHeight = document.querySelector(".navbar").offsetHeight;
+    const offsetPosition = serviceSection.offsetTop - navbarHeight - 20; // 20px buffer from top
+    smoothScrollTo(offsetPosition, 800);
   });
 
   function smoothScrollTo(targetPosition, duration) {
@@ -168,14 +181,14 @@ window.addEventListener("resize", () => {
           const img = entry.target;
           if (img.dataset.src) {
             img.src = img.dataset.src;
-            img.removeAttribute("data-src"); 
+            img.removeAttribute("data-src");
           }
           observer.unobserve(img);
         }
       });
     },
     {
-      rootMargin: "0px 0px 200px 0px", 
+      rootMargin: "0px 0px 200px 0px",
     }
   );
 
@@ -183,7 +196,6 @@ window.addEventListener("resize", () => {
 
   const serviceGrids = document.querySelectorAll('.service-details-grid');
     
-  
   serviceGrids.forEach((grid, index) => {
     if (index !== 0) {
       grid.classList.add('collapsed');
@@ -192,27 +204,26 @@ window.addEventListener("resize", () => {
     }
   });
 
-  
   const buttons = document.querySelectorAll('.service-details-right .contact-button');
   let debounceTimeout;
-buttons.forEach(button => {
-  button.addEventListener('click', (e) => {
-    e.preventDefault();
-    clearTimeout(debounceTimeout);
-    debounceTimeout = setTimeout(() => {
-      const currentGrid = button.closest('.service-details-grid');
-      const isCollapsed = currentGrid.classList.contains('collapsed');
-      serviceGrids.forEach(grid => {
-        grid.classList.remove('expanded');
-        grid.classList.add('collapsed');
-      });
-      if (isCollapsed) {
-        currentGrid.classList.remove('collapsed');
-        currentGrid.classList.add('expanded');
-        const offsetTop = currentGrid.getBoundingClientRect().top + window.pageYOffset - 100;
-        smoothScrollTo(offsetTop, 300);
-      }
-    }, 50); // Debounce by 50ms
+  buttons.forEach(button => {
+    button.addEventListener('click', (e) => {
+      e.preventDefault();
+      clearTimeout(debounceTimeout);
+      debounceTimeout = setTimeout(() => {
+        const currentGrid = button.closest('.service-details-grid');
+        const isCollapsed = currentGrid.classList.contains('collapsed');
+        serviceGrids.forEach(grid => {
+          grid.classList.remove('expanded');
+          grid.classList.add('collapsed');
+        });
+        if (isCollapsed) {
+          currentGrid.classList.remove('collapsed');
+          currentGrid.classList.add('expanded');
+          const offsetTop = currentGrid.getBoundingClientRect().top + window.pageYOffset - 100;
+          smoothScrollTo(offsetTop, 300);
+        }
+      }, 50);
+    });
   });
-});
 });
