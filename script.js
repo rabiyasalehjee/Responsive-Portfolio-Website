@@ -1,9 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
   
   const lenis = new Lenis({
-    duration: 1.2, 
+    duration: 0.8, 
     easing: (t) => Math.min(1, 1.001 - Math.pow(1 - t, 2)), 
     smooth: true, 
+    smoothTouch: true, // Enable smooth scrolling on touch devices
+  wheelMultiplier: 1, // Adjust scroll speed (default is 1)
+  touchMultiplier: 2, // Adjust touch sensitivity
   });
 
   function raf(time) {
@@ -111,7 +114,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   updateActiveSlide();
 
-  window.addEventListener("resize", () => {
+  let resizeTimeout;
+window.addEventListener("resize", () => {
+  clearTimeout(resizeTimeout);
+  resizeTimeout = setTimeout(() => {
     const newSlideWidth = slides[0].offsetWidth;
     const newContainerWidth = Math.min(sliderWrapper.parentElement.offsetWidth, 1000);
     const newOffset = (newContainerWidth - newSlideWidth) / 2;
@@ -119,7 +125,8 @@ document.addEventListener("DOMContentLoaded", () => {
     currentTranslate = prevTranslate;
     sliderWrapper.style.transform = `translateX(${prevTranslate}px)`;
     updateActiveSlide();
-  });
+  }, 100); // Throttle to 100ms
+});
 
   const contactButton = document.querySelector(".contact-button");
   contactButton.addEventListener("click", (e) => {
@@ -187,27 +194,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
   
   const buttons = document.querySelectorAll('.service-details-right .contact-button');
-  buttons.forEach(button => {
-    button.addEventListener('click', (e) => {
-      e.preventDefault();
+  let debounceTimeout;
+buttons.forEach(button => {
+  button.addEventListener('click', (e) => {
+    e.preventDefault();
+    clearTimeout(debounceTimeout);
+    debounceTimeout = setTimeout(() => {
       const currentGrid = button.closest('.service-details-grid');
       const isCollapsed = currentGrid.classList.contains('collapsed');
-
-      
       serviceGrids.forEach(grid => {
         grid.classList.remove('expanded');
         grid.classList.add('collapsed');
       });
-
-      
       if (isCollapsed) {
         currentGrid.classList.remove('collapsed');
         currentGrid.classList.add('expanded');
-        
-        
-        const offsetTop = currentGrid.getBoundingClientRect().top + window.pageYOffset - 100; 
-        smoothScrollTo(offsetTop, 300); 
+        const offsetTop = currentGrid.getBoundingClientRect().top + window.pageYOffset - 100;
+        smoothScrollTo(offsetTop, 300);
       }
-    });
+    }, 50); // Debounce by 50ms
   });
+});
 });

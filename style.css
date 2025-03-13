@@ -642,7 +642,7 @@ body {
   width: 400px;
   height: 350px;
   object-fit: cover;
-  transition: filter 0.3s ease, box-shadow 0.3s ease;
+  transition: filter 0.3s ease;
   border-radius: 15px;
   border: 2px solid #ccc;
 }
