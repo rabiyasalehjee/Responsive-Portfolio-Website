@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  
   const lenis = new Lenis({
     duration: 0.8,
     easing: (t) => Math.min(1, 1.001 - Math.pow(1 - t, 2)),
@@ -15,28 +14,28 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   requestAnimationFrame(raf);
 
-  const leftBtn = document.querySelector('.arrow-left');
-  const rightBtn = document.querySelector('.arrow-right');
-  const cardSets = document.querySelectorAll('.projects-cards-grid');
+  const leftBtn = document.querySelector(".arrow-left");
+  const rightBtn = document.querySelector(".arrow-right");
+  const cardSets = document.querySelectorAll(".projects-cards-grid");
   let currentSet = 1;
 
-  rightBtn.addEventListener('click', () => {
+  rightBtn.addEventListener("click", () => {
     if (currentSet === 1) {
-      cardSets[0].classList.remove('active');
-      cardSets[1].classList.add('active');
+      cardSets[0].classList.remove("active");
+      cardSets[1].classList.add("active");
       currentSet = 2;
-      leftBtn.removeAttribute('disabled');
-      rightBtn.setAttribute('disabled', 'true');
+      leftBtn.removeAttribute("disabled");
+      rightBtn.setAttribute("disabled", "true");
     }
   });
 
-  leftBtn.addEventListener('click', () => {
+  leftBtn.addEventListener("click", () => {
     if (currentSet === 2) {
-      cardSets[1].classList.remove('active');
-      cardSets[0].classList.add('active');
+      cardSets[1].classList.remove("active");
+      cardSets[0].classList.add("active");
       currentSet = 1;
-      rightBtn.removeAttribute('disabled');
-      leftBtn.setAttribute('disabled', 'true');
+      rightBtn.removeAttribute("disabled");
+      leftBtn.setAttribute("disabled", "true");
     }
   });
 
@@ -49,7 +48,10 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentIndex = 1;
 
   const slideWidth = slides[0].offsetWidth;
-  const containerWidth = Math.min(sliderWrapper.parentElement.offsetWidth, 1000);
+  const containerWidth = Math.min(
+    sliderWrapper.parentElement.offsetWidth,
+    1000
+  );
   const visibleSlides = 3;
   const offset = (containerWidth - slideWidth) / 2;
 
@@ -121,7 +123,10 @@ document.addEventListener("DOMContentLoaded", () => {
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(() => {
       const newSlideWidth = slides[0].offsetWidth;
-      const newContainerWidth = Math.min(sliderWrapper.parentElement.offsetWidth, 1000);
+      const newContainerWidth = Math.min(
+        sliderWrapper.parentElement.offsetWidth,
+        1000
+      );
       const newOffset = (newContainerWidth - newSlideWidth) / 2;
       prevTranslate = -(newSlideWidth * currentIndex) + newOffset;
       currentTranslate = prevTranslate;
@@ -130,25 +135,27 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 100);
   });
 
-  // Existing Discover button handler
   const contactButton = document.querySelector(".contact-button");
   contactButton.addEventListener("click", (e) => {
     e.preventDefault();
     const sliderSection = document.querySelector("#slider");
-    smoothScrollTo(sliderSection.offsetTop, 800);
+    const navbarHeight = document.querySelector(".navbar").offsetHeight;
+    const offsetPosition = sliderSection.offsetTop - navbarHeight;
+    smoothScrollTo(offsetPosition, 800);
   });
 
-  // Navbar Service link handler
-  const navServiceLink = document.querySelector('.menu-items a[href="#services"]');
+  const navServiceLink = document.querySelector(
+    '.menu-items a[href="#services"]'
+  );
   navServiceLink.addEventListener("click", (e) => {
     e.preventDefault();
     const serviceSection = document.querySelector("#service");
     const navbarHeight = document.querySelector(".navbar").offsetHeight;
     const offsetPosition = serviceSection.offsetTop - navbarHeight;
     smoothScrollTo(offsetPosition, 800);
+    closeMobileMenu();
   });
 
-  // Navbar Work link handler
   const navWorkLink = document.querySelector('.menu-items a[href="#work"]');
   navWorkLink.addEventListener("click", (e) => {
     e.preventDefault();
@@ -156,20 +163,24 @@ document.addEventListener("DOMContentLoaded", () => {
     const navbarHeight = document.querySelector(".navbar").offsetHeight;
     const offsetPosition = workSection.offsetTop - navbarHeight;
     smoothScrollTo(offsetPosition, 800);
+    closeMobileMenu();
   });
 
-  // Navbar Contact link handler
-  const navContactLink = document.querySelector('.menu-items a[href="#contact"]');
+  const navContactLink = document.querySelector(
+    '.menu-items a[href="#contact"]'
+  );
   navContactLink.addEventListener("click", (e) => {
     e.preventDefault();
     const footerSection = document.querySelector(".footer");
     const navbarHeight = document.querySelector(".navbar").offsetHeight;
     const offsetPosition = footerSection.offsetTop - navbarHeight;
     smoothScrollTo(offsetPosition, 800);
+    closeMobileMenu();
   });
 
-  // Footer Service link handler
-  const footerServiceLink = document.querySelector('.footer-bottom-left a[href="#services"]');
+  const footerServiceLink = document.querySelector(
+    '.footer-bottom-left a[href="#services"]'
+  );
   footerServiceLink.addEventListener("click", (e) => {
     e.preventDefault();
     const serviceSection = document.querySelector("#service");
@@ -178,8 +189,9 @@ document.addEventListener("DOMContentLoaded", () => {
     smoothScrollTo(offsetPosition, 800);
   });
 
-  // Footer Work link handler
-  const footerWorkLink = document.querySelector('.footer-bottom-left a[href="#work"]');
+  const footerWorkLink = document.querySelector(
+    '.footer-bottom-left a[href="#work"]'
+  );
   footerWorkLink.addEventListener("click", (e) => {
     e.preventDefault();
     const workSection = document.querySelector("#work");
@@ -188,8 +200,9 @@ document.addEventListener("DOMContentLoaded", () => {
     smoothScrollTo(offsetPosition, 800);
   });
 
-  // Footer Contact link handler
-  const footerContactLink = document.querySelector('.footer-bottom-left a[href="#contact"]');
+  const footerContactLink = document.querySelector(
+    '.footer-bottom-left a[href="#contact"]'
+  );
   footerContactLink.addEventListener("click", (e) => {
     e.preventDefault();
     const footerSection = document.querySelector(".footer");
@@ -197,6 +210,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const offsetPosition = footerSection.offsetTop - navbarHeight;
     smoothScrollTo(offsetPosition, 800);
   });
+
+  function closeMobileMenu() {
+    const checkbox = document.querySelector(
+      '.navbar-container input[type="checkbox"]'
+    );
+    if (checkbox && window.innerWidth <= 768) {
+      checkbox.checked = false;
+    }
+  }
 
   function smoothScrollTo(targetPosition, duration) {
     const startPosition = window.pageYOffset;
@@ -244,33 +266,36 @@ document.addEventListener("DOMContentLoaded", () => {
 
   images.forEach((img) => observer.observe(img));
 
-  const serviceGrids = document.querySelectorAll('.service-details-grid');
-    
+  const serviceGrids = document.querySelectorAll(".service-details-grid");
+
   serviceGrids.forEach((grid, index) => {
     if (index !== 0) {
-      grid.classList.add('collapsed');
+      grid.classList.add("collapsed");
     } else {
-      grid.classList.add('expanded');
+      grid.classList.add("expanded");
     }
   });
 
-  const buttons = document.querySelectorAll('.service-details-right .contact-button');
+  const buttons = document.querySelectorAll(
+    ".service-details-right .contact-button"
+  );
   let debounceTimeout;
-  buttons.forEach(button => {
-    button.addEventListener('click', (e) => {
+  buttons.forEach((button) => {
+    button.addEventListener("click", (e) => {
       e.preventDefault();
       clearTimeout(debounceTimeout);
       debounceTimeout = setTimeout(() => {
-        const currentGrid = button.closest('.service-details-grid');
-        const isCollapsed = currentGrid.classList.contains('collapsed');
-        serviceGrids.forEach(grid => {
-          grid.classList.remove('expanded');
-          grid.classList.add('collapsed');
+        const currentGrid = button.closest(".service-details-grid");
+        const isCollapsed = currentGrid.classList.contains("collapsed");
+        serviceGrids.forEach((grid) => {
+          grid.classList.remove("expanded");
+          grid.classList.add("collapsed");
         });
         if (isCollapsed) {
-          currentGrid.classList.remove('collapsed');
-          currentGrid.classList.add('expanded');
-          const offsetTop = currentGrid.getBoundingClientRect().top + window.pageYOffset - 100;
+          currentGrid.classList.remove("collapsed");
+          currentGrid.classList.add("expanded");
+          const offsetTop =
+            currentGrid.getBoundingClientRect().top + window.pageYOffset - 100;
           smoothScrollTo(offsetTop, 300);
         }
       }, 50);

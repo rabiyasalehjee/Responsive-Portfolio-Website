@@ -11,12 +11,12 @@
   --gray-light: #f8f8f8;
   --gray-shadow: #f0f0f0;
   --gray-shadow-dark: #e0e0e0;
-  --gray: #9F9F9F;
+  --gray: #9f9f9f;
   --footer-dark: #464646;
   --footer-bottom: #383838;
-  --gray-footer: #B6B6B6;
-  --gray-color: #9D9D9D;
-  --container-bg:#F8F8F8;
+  --gray-footer: #b6b6b6;
+  --gray-color: #9d9d9d;
+  --container-bg: #f8f8f8;
 }
 :root {
   --font-small: 16px;
@@ -538,13 +538,13 @@ body {
 }
 .service-details-grid.collapsed .contact-button-service {
   background-color: var(--gray-light);
-  color: var(--black); 
+  color: var(--black);
   border: 1px solid rgb(196 195 195 / 20%);
 }
 
 .service-details-grid.expanded .contact-button-service {
   background-color: var(--black);
-  color: var(--white); 
+  color: var(--white);
 }
 .contact-button-service:hover {
   background: var(--gray);
@@ -607,12 +607,12 @@ body {
   margin: auto;
   padding: 0 40px;
 }
-.spacer-root{
-  padding:60px;
+.spacer-root {
+  padding: 60px;
 }
 .slider-section {
   padding: 60px 0;
-  padding-bottom:0px !important;
+  padding-bottom: 0px !important;
 }
 
 .slider-container {
@@ -740,7 +740,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top:0px !important;
+  padding-top: 0px !important;
 }
 
 .service-grid {
@@ -1455,6 +1455,7 @@ body {
 }
 
 .project-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   background: white;
@@ -1462,19 +1463,28 @@ body {
   padding-bottom: 0px;
   border-radius: 10px;
   border: 2px solid var(--gray-shadow);
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
 }
 
 .project-image {
+  --img-scale: 1;
   width: 100%;
   height: 330px;
   object-fit: cover;
   border-radius: 10px;
   border: 2px solid #ccc;
+  transform: scale(var(--img-scale));
+  transform-origin: center;
+  transition: transform 0.4s ease-in-out;
 }
 
 .project-card-content {
   padding: 20px 5px;
+}
+
+.project-card:hover .project-image {
+  --img-scale: 1.05;
+  transform: scale(var(--img-scale));
 }
 
 .project-card-header {
