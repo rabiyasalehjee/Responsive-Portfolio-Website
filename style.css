@@ -1654,6 +1654,17 @@ body {
   font-size: var(--font-small);
   color: var(--gray-color);
 }
+.footer-bottom-left a {
+  text-decoration: none;
+  font-size: var(--font-small);
+  color: var(--gray-color);
+  margin-right: 1rem;
+  transition: color 0.3s ease;
+}
+
+.footer-bottom-left a:hover {
+  color: var(--footer-dark);
+}
 
 .footer-bottom-middle {
   text-align: center;
